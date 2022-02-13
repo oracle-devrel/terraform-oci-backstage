@@ -1,0 +1,49 @@
+# Copyright (c) 2019, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
+
+# provider identity parameters
+tenancy_ocid=  "<tenancy OCID>"
+region      =  "<region in which to operate, example: us-ashburn-1, eu-frankfurt-1>"
+user_ocid   =  "<user OCID>"
+api_fingerprint      = "<PEM key fingerprint>"
+api_private_key_path = "<path to the private key that matches the fingerprint above>"
+
+# if no compartment is provided the resources are built at root level
+# compartment_ocid = "<compartment where the resources should be provisioned>"
+
+# Compute Shape parameters
+# shape = "VM.Standard.E4.Flex"
+instance_display_name = "oci-backstage"
+
+# specify the number of CPU with Flex insatnces
+# instance_flex_ocpus = 1
+
+# use OCI Always Free eligible shape
+# use_always_free = true
+
+# specify Availability domain number
+# instance_ad_number = 3
+
+# public key can be provide either as path or keys list
+ssh_public_key_path = "<SSH public key path>"
+
+# ssh_public_keys = <<EOT
+# <ssh_public_key_1>
+# <ssh_public_key_2>
+# <ssh_public_key_3>
+# EOT
+
+
+# Network Paremeters
+
+vcn_cidr = "172.16.0.0/28"
+subnets = {
+   backstage  = { newbits = 2, netnum = 0 }
+}
+
+
+
+
+
+
+

@@ -1,23 +1,55 @@
-# terraform-oci-backstage
+# Backstage on Oracle Cloud Infrastructure 
 
-[![License: UPL](https://img.shields.io/badge/license-UPL-green)](https://img.shields.io/badge/license-UPL-green) [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=oracle-devrel_terraform-oci-backstage)](https://sonarcloud.io/dashboard?id=oracle-devrel_terraform-oci-backstage)
+[![License: UPL](https://img.shields.io/badge/license-UPL-green)](https://img.shields.io/badge/license-UPL-green) 
 
-## THIS IS A NEW, BLANK REPO THAT IS NOT READY FOR USE YET.  PLEASE CHECK BACK SOON!
+
+## Deploy Backstage on a compute instance running on Oracle Cloud Infrastructure 
+
+Terraform script to deploy [Backstage](https://backstage.io/) on Oracle Cloud Infrastructure compute instance.
 
 ## Introduction
-MISSING
+This project enables you to create and configure network and compute resources on OCI and launch a Backstage instance.
 
-## Getting Started
-MISSING
 
+## Architecture Diagram
+
+![Backstage deployment architecture diagram](docs/images/tf-backstage.png)
+
+> Warning: the backstage instance is exposed on Internet with port 3000 and 7007 open.
 ### Prerequisites
-MISSING
+You will need to collect the following information before you start:
 
-## Notes/Issues
-MISSING
+1. your OCI provider authentication values
+2. a compartment OCID in which the instances will be created
+3. a source OCID to deploy the instance, usually an image ocid from [OCI Platform Images list]
+4. a subnet OCID to which the instance's primary VNICs will be attached
+## Getting Started
+
+1. Prepare one [Terraform Variable Definition file] named `terraform.tfvars` with the required authentication information.
+
+   *TIP: You can rename and configure `terraform.tfvars.example` from this example's folder.*
+
+2. Provision the infrastructure and launch Backstage using the following commands:
+
+    ```shell
+    > terraform init
+    > terraform plan
+    > terraform apply
+    ```  
+
+**Note**: the infrastructure will be available in few minutes, however the Backstage setup will take much longer to complete (up to 15 minutes). To monitor the process:
+1. connect via SSH to the instance
+2. launch the following command
+    ```shell
+    $ tail -fn 100 /var/log/cloud-init-output.log
+    ```  
 
 ## URLs
-* Nothing at this time
+For more information about `Backstage`: 
+* [Backstage Docs](https://backstage.io/docs/overview/what-is-backstage)
+
+## Know Issues
+
 
 ## Contributing
 This project is open source.  Please submit your contributions by forking this repository and submitting a pull request!  Oracle appreciates any contributions that are made by the open source community.
@@ -28,3 +60,9 @@ Copyright (c) 2021 Oracle and/or its affiliates.
 Licensed under the Universal Permissive License (UPL), Version 1.0.
 
 See [LICENSE](LICENSE) for more details.
+
+---
+
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=oracle-devrel_terraform-oci-backstage)](https://sonarcloud.io/dashboard?id=oracle-devrel_terraform-oci-backstage)
+
