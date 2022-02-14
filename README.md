@@ -20,14 +20,13 @@ This project enables you to create and configure network and compute resources o
 You will need to collect the following information before you start:
 
 1. your OCI provider authentication values
-2. a compartment OCID in which the instances will be created
-3. a source OCID to deploy the instance, usually an image ocid from [OCI Platform Images list]
-4. a subnet OCID to which the instance's primary VNICs will be attached
+2. SSH public key
+3. a compartment OCID in which the instances will be created (optional)
 ## Getting Started
 
 1. Prepare one [Terraform Variable Definition file] named `terraform.tfvars` with the required authentication information.
 
-   *TIP: You can rename and configure `terraform.tfvars.example` from this example's folder.*
+   *TIP: You can rename `terraform.tfvars.example` and enter your configuration*
 
 2. Provision the infrastructure and launch Backstage using the following commands:
 
@@ -37,12 +36,13 @@ You will need to collect the following information before you start:
     > terraform apply
     ```  
 
-**Note**: the infrastructure will be available in few minutes, however the Backstage setup will take much longer to complete (up to 15 minutes). To monitor the process:
-1. connect via SSH to the instance
-2. launch the following command
-    ```shell
-    $ tail -fn 100 /var/log/cloud-init-output.log
-    ```  
+    **Note**: the infrastructure will be available in few minutes, however the Backstage setup will take much longer to complete (up to 15 minutes). To monitor the process:
+    1. connect via SSH to the instance
+    2. launch the following command
+        ```shell
+        $ tail -fn 100 /var/log/cloud-init-output.log
+        ```  
+3. Get the public IP of the instance from the Terraform output and open http://<PUBLIC_IP>:3000 in your browser
 
 ## URLs
 For more information about `Backstage`: 
